@@ -113,20 +113,20 @@ function unlockAchievement(id) {
     let profile = getProfile();
 
     const achievementList = {
-        first_game: "🎮 First Game",
-        gamer_10: "🎮 Played 10 Games",
-        gamer_50: "🎮 Played 50 Games",
-        ai_user: "🤖 AI Beginner",
-        ai_20: "🤖 AI Expert (20 Uses)",
-        xp_100: "⭐ 100 XP",
-        xp_500: "⭐ 500 XP",
-        xp_1000: "⭐ 1000 XP",
-        level_5: "🔥 Level 5",
-        level_10: "🔥 Level 10",
-        level_25: "🔥 Level 25",
-        coins_100: "💰 100 N-Coins",
-        coins_500: "💰 500 N-Coins",
-        visitor_10: "📅 10 Visits"
+        first_game: " First Game",
+        gamer_10: " Played 10 Games",
+        gamer_50: " Played 50 Games",
+        ai_user: " AI Beginner",
+        ai_20: " AI Expert (20 Uses)",
+        xp_100: " 100 XP",
+        xp_500: "500 XP",
+        xp_1000: " 1000 XP",
+        level_5: " Level 5",
+        level_10: " Level 10",
+        level_25: " Level 25",
+        coins_100: " 100 N-Coins",
+        coins_500: " 500 N-Coins",
+        visitor_10: " 10 Visits"
     };
 
     if (!profile.achievements.includes(id) && achievementList[id]) {
@@ -203,20 +203,20 @@ function renderAchievements() {
     if (!grid) return;
 
     const achievementList = {
-        first_game: "🎮 First Game",
-        gamer_10: "🎮 Played 10 Games",
-        gamer_50: "🎮 Played 50 Games",
-        ai_user: "🤖 AI Beginner",
-        ai_20: "🤖 AI Expert (20 Uses)",
-        xp_100: "⭐ 100 XP",
-        xp_500: "⭐ 500 XP",
-        xp_1000: "⭐ 1000 XP",
-        level_5: "🔥 Level 5",
-        level_10: "🔥 Level 10",
-        level_25: "🔥 Level 25",
-        coins_100: "💰 100 N-Coins",
-        coins_500: "💰 500 N-Coins",
-        visitor_10: "📅 10 Visits"
+        first_game:  " First Game",
+        gamer_10: " Played 10 Games",
+        gamer_50: " Played 50 Games",
+        ai_user: " AI Beginner",
+        ai_20: " AI Expert (20 Uses)",
+        xp_100: " 100 XP",
+        xp_500: " 500 XP",
+        xp_1000: " 1000 XP",
+        level_5: " Level 5",
+        level_10: " Level 10",
+        level_25: " Level 25",
+        coins_100: " 100 N-Coins",
+        coins_500: " 500 N-Coins",
+        visitor_10: " 10 Visits"
     };
 
     grid.innerHTML = "";
