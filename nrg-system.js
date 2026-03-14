@@ -1,6 +1,3 @@
-// ============================
-// NRG PROFILE SYSTEM
-// ============================
 
 function getProfile() {
     let profile = JSON.parse(localStorage.getItem("nrg_profile"));
@@ -46,7 +43,7 @@ function getRank(level) {
     return "Rookie";
 }
 
-// Show achievement popup
+
 function showAchievementPopup(name) {
     const popup = document.createElement("div");
     popup.className = "achievement-popup";
@@ -58,9 +55,7 @@ function showAchievementPopup(name) {
     }, 2500);
 }
 
-// ============================
-// Core Adders
-// ============================
+
 
 function addXP(amount) {
     let profile = getProfile();
@@ -88,9 +83,6 @@ function addCoins(amount) {
     checkAchievements();
 }
 
-// ============================
-// Spend Coins
-// ============================
 
 function spendCoins(amount) {
     let profile = getProfile();
@@ -105,9 +97,7 @@ function spendCoins(amount) {
     }
 }
 
-// ============================
-// Achievements System
-// ============================
+
 
 function unlockAchievement(id) {
     let profile = getProfile();
@@ -133,7 +123,7 @@ function unlockAchievement(id) {
         profile.achievements.push(id);
         saveProfile(profile);
         showAchievementPopup(achievementList[id]);
-        renderAchievements(); // ensure grid updates immediately
+        renderAchievements(); 
     }
 }
 
@@ -141,36 +131,34 @@ function checkAchievements() {
     let profile = getProfile();
     let level = getLevel(profile.xp);
 
-    // Games
+    
     if (profile.progress.gamesPlayed >= 1) unlockAchievement("first_game");
     if (profile.progress.gamesPlayed >= 10) unlockAchievement("gamer_10");
     if (profile.progress.gamesPlayed >= 50) unlockAchievement("gamer_50");
 
-    // AI uses
+    
     if (profile.progress.aiUses >= 1) unlockAchievement("ai_user");
     if (profile.progress.aiUses >= 20) unlockAchievement("ai_20");
 
-    // XP
+    
     if (profile.xp >= 100) unlockAchievement("xp_100");
     if (profile.xp >= 500) unlockAchievement("xp_500");
     if (profile.xp >= 1000) unlockAchievement("xp_1000");
 
-    // Levels
+    
     if (level >= 5) unlockAchievement("level_5");
     if (level >= 10) unlockAchievement("level_10");
     if (level >= 25) unlockAchievement("level_25");
 
-    // Coins
+    
     if (profile.nCoins >= 100) unlockAchievement("coins_100");
     if (profile.nCoins >= 500) unlockAchievement("coins_500");
 
-    // Visits
+    
     if (profile.progress.visits >= 10) unlockAchievement("visitor_10");
 }
 
-// ============================
-// Profile UI Updates
-// ============================
+
 
 function updateProfileUI() {
     const profile = getProfile();
@@ -228,9 +216,7 @@ function renderAchievements() {
     }
 }
 
-// ============================
-// Game Tracking
-// ============================
+
 
 function trackGamePlayed() {
     addProgress("gamesPlayed");
@@ -244,9 +230,7 @@ function trackAiUsage() {
     addCoins(1);
 }
 
-// ============================
-// Daily Bonus
-// ============================
+
 
 function dailyBonus() {
     const lastBonus = localStorage.getItem('nrg_last_daily_bonus') || 0;
@@ -262,9 +246,7 @@ function dailyBonus() {
     }
 }
 
-// ============================
-// Expose global functions for console/testing
-// ============================
+
 
 window.addXP = addXP;
 window.addCoins = addCoins;
@@ -276,10 +258,8 @@ window.getProfile = getProfile;
 window.saveProfile = saveProfile;
 window.updateProfileUI = updateProfileUI;
 
-// ============================
-// Auto-update UI and achievements on page load
-// ============================
+
 window.addEventListener('load', () => {
     updateProfileUI();
-    checkAchievements(); // <- THIS fixes achievements for testers
+    checkAchievements(); 
 });
