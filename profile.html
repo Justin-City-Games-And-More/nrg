@@ -9,21 +9,21 @@
 
 <div class="profile-page">
 
-  <!-- Profile Card -->
+  
   <div class="profile-card">
 
-    <!-- Banner -->
+  
     <div class="profile-banner" id="banner"></div>
     <input type="file" id="banner-upload" accept="image/*" hidden>
 
-    <!-- Profile Header -->
+  
     <div class="profile-header">
 
-      <!-- PFP -->
+      
       <div class="pfp" id="pfp"></div>
       <input type="file" id="pfp-upload" accept="image/*" hidden>
 
-      <!-- Profile Info -->
+   
       <div class="profile-info">
 
         <input type="text" id="username-input" placeholder="Enter username">
@@ -47,7 +47,7 @@
             </div>
           </div>
 
-          <!-- N-Coins Counter -->
+       
           <div class="ncoins-container">
             <span>N-Coins: </span><span id="ncoins">0</span>
           </div>
@@ -59,7 +59,7 @@
 
     </div>
 
-    <!-- Achievements Section -->
+
     <div class="profile-content">
       <h3 class="section-title">Achievements</h3>
       <div id="achievements-grid"></div>
@@ -81,11 +81,11 @@ function loadProfile() {
   document.getElementById("xp").innerText = profile.xp;
   document.getElementById("rank").innerText = getRank(level);
 
-  // Update XP bar
+
   let percent = profile.xp % 100;
   document.getElementById("xp-fill").style.width = percent + "%";
 
-  // Load PFP
+
   if (profile.pfp) {
     const pfp = document.getElementById("pfp");
     pfp.style.backgroundImage = `url(${profile.pfp})`;
@@ -93,7 +93,7 @@ function loadProfile() {
     pfp.style.backgroundPosition = "center";
   }
 
-  // Load Banner
+
   if (profile.banner) {
     const banner = document.getElementById("banner");
     banner.style.backgroundImage = `url(${profile.banner})`;
@@ -101,7 +101,7 @@ function loadProfile() {
     banner.style.backgroundPosition = "center";
   }
 
-  // Update N-Coins
+
   document.getElementById("ncoins").innerText = profile.nCoins || 0;
 
   renderAchievements();
@@ -115,17 +115,17 @@ function saveProfileInfo() {
 }
 
   
-// PFP click trigger
+
 document.getElementById("pfp").addEventListener("click", () => {
   document.getElementById("pfp-upload").click();
 });
 
-// Banner click trigger
+
 document.getElementById("banner").addEventListener("click", () => {
   document.getElementById("banner-upload").click();
 });
 
-// Upload handlers
+
 document.getElementById("pfp-upload").addEventListener("change", function() {
   const reader = new FileReader();
   reader.onload = function(e) {
