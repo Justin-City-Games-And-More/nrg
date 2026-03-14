@@ -21,6 +21,8 @@ if (config.challenge !== false) {
   app.use(basicAuth({ users: config.users, challenge: true }));
 }
 
+app.get("/check", (req, res) => res.status(200).send("OK"));
+
 // Serve static assets automatically
 app.use(
   express.static(path.join(__dirname, "static"), {
@@ -34,7 +36,6 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "static", "404.html"));
 });
 
-app.get("/check", (req, res) => res.status(200).send("OK"));
 
 
 server.on("request", (req, res) => {
