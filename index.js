@@ -1,7 +1,7 @@
 // Credit Interstellar
 import http from "node:http";
 import path from "node:path";
-import { createBareServer } from "@tomphttp/bare-server-node";
+import { server as wisp } from "@mercuryworkshop/wisp-js/server";
 import chalk from "chalk";
 import express from "express";
 import basicAuth from "express-basic-auth";
@@ -12,7 +12,6 @@ console.log(chalk.yellow("🚀 Starting server..."));
 const __dirname = process.cwd();
 const server = http.createServer();
 const app = express();
-const bareServer = createBareServer("/edu/");
 const PORT = 8080;
 
 // Authentication Logic
@@ -36,19 +35,15 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "static", "404.html"));
 });
 
-
-
+// Express handles all standard HTTP requests
 server.on("request", (req, res) => {
-  if (bareServer.shouldRoute(req)) {
-    bareServer.routeRequest(req, res);
-  } else {
-    app(req, res);
-  }
+  app(req, res);
 });
 
+// Wisp handles WebSocket upgrades on /wisp/
 server.on("upgrade", (req, socket, head) => {
-  if (bareServer.shouldRoute(req)) {
-    bareServer.routeUpgrade(req, socket, head);
+  if (req.url.endsWith("/wisp/")) {
+    wisp.routeRequest(req, socket, head);
   } else {
     socket.end();
   }

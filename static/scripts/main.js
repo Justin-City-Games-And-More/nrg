@@ -1,0 +1,4 @@
+(async()=>{const proxyElem=document.getElementById("proxylink");if(!proxyElem)return;const proxyLink=proxyElem.textContent.trim();if(!proxyLink){console.error("No proxy link found");return}
+const hasUseScram=document.cookie.split("; ").some((item)=>item.trim().startsWith("usescram="));if(hasUseScram){window.location.href=`/tiny?go=${encodeURIComponent(proxyLink)}`;return}
+const xorEncode=(str)=>{return str.split("").map((char,i)=>i%2?String.fromCharCode(char.charCodeAt(0)^2):char).join("")};const encoded=xorEncode(proxyLink);try{const registration=await navigator.serviceWorker.getRegistration("/sw.js");if(!registration){await navigator.serviceWorker.register("/sw.js",{scope:"/service/"})}
+window.location.href=`/service/${encodeURIComponent(encoded)}`}catch(err){console.error("Service Worker registration failed:",err);window.location.href=`/service/${encodeURIComponent(encoded)}`}})()

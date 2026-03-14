@@ -1,0 +1,6 @@
+const WISP_CONFIG={defaultVercel:"wss://gointospace.app/wisp/",localFallback:(location.protocol==="https:"?"wss://":"ws://")+location.hostname+"/wisp/",storageKey:"custom_wisp_url",};function getWispUrl(){const savedWisp=localStorage.getItem(WISP_CONFIG.storageKey);console.log("savedWisp:",savedWisp,"hostname:",location.hostname,"protocol:",location.protocol);if(savedWisp&&savedWisp!=="wss://"&&savedWisp!=="ws://"&&(savedWisp.startsWith("wss://")||savedWisp.startsWith("ws://"))){return savedWisp}
+return location.hostname.endsWith(".vercel.app")?WISP_CONFIG.defaultVercel:WISP_CONFIG.localFallback}
+function updateWisp(newUrl){if(newUrl&&newUrl.startsWith("ws")){localStorage.setItem(WISP_CONFIG.storageKey,newUrl);location.reload()}else{alert("Please enter a valid WebSocket URL (wss:// or ws://)")}}
+function saveWisp(){const wispInput=document.getElementById("wispUrlInput");if(wispInput){updateWisp(wispInput.value)}}
+document.addEventListener("DOMContentLoaded",()=>{const wispInput=document.getElementById("wispUrlInput");const saveButton=document.getElementById("saveWispButton");if(wispInput){const url=getWispUrl();console.log("setting wisp input to",url);wispInput.value=url}
+if(saveButton){saveButton.addEventListener("click",()=>{if(wispInput){updateWisp(wispInput.value)}})}})
